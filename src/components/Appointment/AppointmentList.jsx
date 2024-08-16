@@ -41,7 +41,7 @@ const AppointmentList = () => {
         const response = await axios.get(url);
         fetchAppointments();
     } catch (err) {
-        setError(err.message || 'An error occurred');
+        setError(err.message || 'An error has occured');
     }
   }
 
@@ -51,7 +51,7 @@ const AppointmentList = () => {
         const response = await axios.get(url)
         fetchAppointments();
     }catch(err){
-        setError(err.message || 'An error occurred');
+        setError(err.message || 'An error has occured');
     }
   }
 

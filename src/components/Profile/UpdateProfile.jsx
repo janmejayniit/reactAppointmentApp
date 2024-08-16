@@ -27,6 +27,7 @@ function UpdateProfile() {
   return (
     <div className='container-fluid mt-2'>
         <div className="row">
+            <div className='col-md-4'></div>
             <div className='col-md-4'>
                 <div className='card'>
                     <ToastContainer />

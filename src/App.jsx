@@ -2,7 +2,6 @@ import AddNewAppointment from './components/Appointment/AddNewAppointment';
 import AppointmentList from './components/Appointment/AppointmentList';
 import Register from './components/Auth/Register';
 import Login from './components/Auth/Login';
-import { useEffect, useState } from 'react';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import Layout from './components/Layouts/Layout';
 import { useSelector } from 'react-redux'
@@ -10,6 +9,8 @@ import Profile from './components/Profile/Profile';
 import UpdateProfile from './components/Profile/UpdateProfile';
 import 'react-toastify/dist/ReactToastify.css';
 import UpdatePassword from './components/Profile/UpdatePassword';
+import PrivateRoute from  './components/Auth/PrivateRoute.jsx'
+import Home from './components/Home/Home'
 // redirect
 
 function App() {
@@ -43,13 +44,21 @@ function App() {
     createRoutesFromElements(
       <Route path='/' element={<Layout/>}>
         {/* <PrivateRoute path="" component={AppointmentList} isAuthenticated={loginUser} /> */}
-        <Route path='' element={<AppointmentList />} />
+         
+        <Route path='/' element={<Home />} />
         <Route path='/appointments' element={<AppointmentList />} />
-        <Route path='login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        {/* <Route path='/profile/:user_id' element={<Profile/>}/> */}
+        <Route path='/appointment/create/:appointment_to' element={<AddNewAppointment/>}/>
+        
+        <Route excat path='/profile/:user_id' element={<Profile/>}/>
+
         <Route path='/profile/update/image' element={<UpdateProfile/>}/>
         <Route path='/profile/update/password' element={<UpdatePassword/>}/>
+
+        {/* <Route path='/profile/update/password' element={<UpdatePassword/>}/> */}
+
+        <Route path='login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+
       </Route>
     )
   )
@@ -61,19 +70,7 @@ function App() {
   )
 }
 
-// PrivateRoute component to handle protected routes
-// const PrivateRoute = ({ component: Component, loginUser, ...rest }) => (
-//   <Route
-//     {...rest}
-//     render={props =>
-//       loginUser ? (
-//         <Component {...props} />
-//       ) : (
-//         <redirect to="/login" />
-//       )
-//     }
-//   />
-// );
+
 
 
 

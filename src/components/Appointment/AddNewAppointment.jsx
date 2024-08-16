@@ -1,21 +1,26 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import {useParams} from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
 
 function AddNewAppointment() {
 
+    const {appointment_to} = useParams()
     const loggedInUser = useSelector((state)=>state.auth.userData)
     // console.log(loggedInUser.user_id)
 
     const [user, setUser] = useState(
         {
-            name:'',
-            email:'',
-            mobile:'',
+            // name:'',
+            // email:'',
+            // mobile:'',
             symptoms:'',
             date:'',
             time:'',
-            user_id:loggedInUser.user_id
+            // user_id:loggedInUser.user_id
+            user_id:localStorage.getItem('user_id'),
+            appointment_to:appointment_to
         }
     )
 
@@ -26,22 +31,25 @@ function AddNewAppointment() {
         try{
            
             // console.log(user)
-            const result = await axios.post(url,user)
+            const response = await axios.post(url,user)
+            toast(response.data.message);
             console.log(result)
         }
         catch(err){
             console.log(err)
+            toast(response.data.message);
         }
         finally{
-            setUser({
-                name:'',
-                email:'',
-                mobile:'',
-                symptoms:'',
-                date:'',
-                time:'',
-                user_id:loggedInUser.user_id
-            })
+            // setUser({
+            //     // name:'',
+            //     // email:'',
+            //     // mobile:'',
+            //     symptoms:'',
+            //     date:'',
+            //     time:'',
+            //     user_id:localStorage.getItem('user_id'),
+            //     appointment_to:appointment_to
+            // })
         }
     }
 
@@ -52,8 +60,9 @@ function AddNewAppointment() {
             <div className='col-md-6'>
                 <div className='card'>
                     <div className='card-body'>
+                        <ToastContainer />
                         <form onSubmit={handleSubmit}>
-                            <div class="mb-3">
+                            {/* <div class="mb-3">
                                 <label for="" class="form-label">Your Name</label>
                                 <input type="text" class="form-control" value={user.name} onChange={(e)=>setUser(prevUser => ({...prevUser,name: e.target.value}))}/>     
                             </div>
@@ -64,7 +73,7 @@ function AddNewAppointment() {
                             <div class="mb-3">
                                 <label for="" class="form-label">Mobile</label>
                                 <input type="text" class="form-control" value={user.mobile} onChange={(e)=>setUser(prevUser => ({...prevUser,mobile: e.target.value}))}/>     
-                            </div>
+                            </div> */}
 
                             <div class="mb-3">
                                 <label for="" class="form-label">Symptoms</label>
