@@ -4,15 +4,16 @@ import { Link } from 'react-router-dom';
 
 function Home() {
 
-    const [user, setUser]= useState([]);
+    const [user, setUser]= useState([])
+    const [error, setError]= useState()
 
     const fetchDocotrsList = async  () => {
         const URL='http://127.0.0.1:5000/api/v1/list/doctors'
         try{
             const response = await axios.get(URL)
             setUser(response.data.records);    
-        }catch(error){
-            console.log(error)
+        }catch(err){
+            setError(err.message)
         }
     }
 
@@ -23,11 +24,10 @@ function Home() {
   return (
     <div className='container-fluid mt-2'>
       <div className='row'>
+        {error?<div className='col-md-12 text-danger text-center'><h4>{error}</h4></div>:null}
         
         {
-
             user.length>0 ? user.map((record, index)=>(
- 
                 <div className='col-md-3'>
                     <div className='card'>
                         <div className='card-body'>
@@ -40,8 +40,7 @@ function Home() {
                             </div>
                         </div>
                     </div>    
-                </div>
-                
+                </div>    
             ))  :'No Records'
         }
       </div>

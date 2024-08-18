@@ -1,26 +1,20 @@
-import React from 'react'
+import React  from 'react'
 import { useSelector } from 'react-redux'
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 
 function Header() {
   // const loginUser = useSelector((state) => state.auth.userData);
+  const navigate = useNavigate();
   const loginUser = {
                     first_name:localStorage.getItem('first_name'),
                     last_name:localStorage.getItem('last_name'),
                     status:localStorage.getItem('user_id')?true:false
                   }
   const logout = ()=>{
-    localStorage.clear()
-    // localStorage.setItem('first_name', userData.first_name)
-    // localStorage.setItem('last_name', userData.last_name)
-    // localStorage.setItem('email', userData.email)
-    // localStorage.setItem('user_id', userData.user_id)
-    // localStorage.setItem('user_role', userData.user_role)
+    localStorage.clear();
+    navigate('/login')
   }
-
-
-
 
   return (
      <React.Fragment>
@@ -43,7 +37,7 @@ function Header() {
             <ul className="navbar-nav ml-auto">
               {loginUser.status?
               <>
-                <li class="nav-item dropdown">
+                <li className="nav-item dropdown">
                   <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i className="bi bi-person-circle"></i> {loginUser && loginUser.first_name+' '+loginUser.last_name}
                   </a>

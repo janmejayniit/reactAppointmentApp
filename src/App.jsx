@@ -48,14 +48,9 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/appointments' element={<AppointmentList />} />
         <Route path='/appointment/create/:appointment_to' element={<AddNewAppointment/>}/>
-        
         <Route excat path='/profile/:user_id' element={<Profile/>}/>
-
         <Route path='/profile/update/image' element={<UpdateProfile/>}/>
         <Route path='/profile/update/password' element={<UpdatePassword/>}/>
-
-        {/* <Route path='/profile/update/password' element={<UpdatePassword/>}/> */}
-
         <Route path='login' element={<Login />} />
         <Route path='/register' element={<Register />} />
 

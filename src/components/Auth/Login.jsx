@@ -17,7 +17,8 @@ function Login() {
         
         try{
             const response = await axios.post(url, user)
-            if(response){
+            console.log(response)
+            if(response.status=='200'){
                 const userData = response.data.user;
                 // console.log(userData)
                 localStorage.setItem('first_name', userData.first_name)
@@ -30,7 +31,7 @@ function Login() {
                 // toast('Login is successful');
                 navigate("/")
             }else{
-                toast('Oops! Login Failed');
+                toast(response.data.message);
             }
         }catch(error){
             setError(error)
