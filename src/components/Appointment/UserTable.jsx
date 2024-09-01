@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 function UserTable(props) {
 
-    const [feedbackform, setFeedbackForm] = useState({'star_rating':'', 'feedback':'', 'sid':null});
+    const [feedbackform, setFeedbackForm] = useState({'star_rating':'', 'feedback':'','user_id':'', 'sid':null});
 
     const markCompleteAppointment = (e)=>{
         
@@ -22,8 +22,9 @@ function UserTable(props) {
         }
     }
 
-    const showPopup = (sid) =>{
+    const showPopup = (user_id, sid) =>{
         console.log(sid);
+        setFeedbackForm((prev)=>({...prev, user_id:user_id}));
         setFeedbackForm((prev)=>({...prev, sid:sid}));
         const myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
         myModal.show()
@@ -92,7 +93,7 @@ function UserTable(props) {
                         }
                     </td>
                     <td align='center'>
-                        {appointment.is_completed? !appointment.feedback?<button className='btn btn-dark btn-sm' onClick={()=>showPopup(appointment.id)}>click</button>:<i className='bi bi-check-circle'></i>:null }
+                        {appointment.is_completed? !appointment.feedback?<button className='btn btn-dark btn-sm' onClick={()=>showPopup(appointment.appointment_user_id, appointment.id)}>click</button>:<i className='bi bi-check-circle'></i>:null }
                     </td>
                 </tr>
                 ))}

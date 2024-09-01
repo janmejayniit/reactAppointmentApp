@@ -1,3 +1,4 @@
+import { Height } from '@mui/icons-material';
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
@@ -29,10 +30,14 @@ function Home() {
         {
             user.length>0 ? user.map((record, index)=>(
                 <div className='col-md-3'>
+                    
                     <div className='card'>
-                        <div className='card-body'>
-                            <img src={'/profile_images/'+record.profile_pic} style={{width:'100%'}}/>
+                        <div style={{backgroundColor:'black'}}>
+                            <img src={'/profile_images/'+record.profile_pic} className="" style={{width:'100%', height:'220px', objectFit:'contain'}}/>
                         </div>
+                        {record.ratings>0 && <span style={{position:'absolute'}}>{record.ratings}<i className='bi bi-star'></i></span>}
+                        {/* <div className='card-body'>
+                        </div> */}
                         <div className='card-footer'>
                             <div className='text float-start'>{record.first_name+' '+record.last_name}</div>
                             <div className='float-end'>

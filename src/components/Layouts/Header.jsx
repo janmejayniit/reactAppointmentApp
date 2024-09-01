@@ -30,9 +30,7 @@ function Header() {
               <li className="nav-item">
                 <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="#">Link</NavLink>
-              </li>   
+                
             </ul>
             <ul className="navbar-nav ml-auto">
               {loginUser.status?
